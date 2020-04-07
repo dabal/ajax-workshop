@@ -34,6 +34,7 @@ function creatBookRow(book) {
             <td>${book.author}</td>
             <td>
             <button class="btn btn-info button-details" data-id="${book.id}">Szczegóły</button>
+            <button class="btn btn-warning button-update" data-id="${book.id}">Edytuj</button>
             <button class="btn btn-danger button-delete" data-id="${book.id}">Usuń</button>
 
             </td></tr>`);
@@ -50,7 +51,12 @@ function creatBookRow(book) {
     row.find(".button-details").first().on("click", event => {
         event.preventDefault();
         $(".details").each(function(index, element) { $(element).remove() });
-        let detailsDiv = $(`<tr class="details"><td colspan="3">szczegóły</td></tr>`);
+        let detailsDiv = $(`<tr class="details"><td colspan="3">
+        <ol class="list-group">
+        <li class="list-group-item">${book.isbn}</li>
+        <li class="list-group-item">${book.publisher}</li>
+        <ol>
+        </td></tr>`);
         console.log(book);
         row.after(detailsDiv);
     });
